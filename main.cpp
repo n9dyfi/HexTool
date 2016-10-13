@@ -20,7 +20,7 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     // Make viewer the parent object.
     hextool = new HexTool(qml, &viewer);
 
-    // Catch application exit to save the recent files list
+    // Catch application exit to save the settings
     QObject::connect(QCoreApplication::instance(),SIGNAL(aboutToQuit()),
         hextool,SLOT(closeEvent()));
 

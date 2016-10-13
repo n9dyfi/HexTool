@@ -9,7 +9,6 @@ Q_DECL_EXPORT int main(int argc, char *argv[])
     HexTool *hextool;
 
     QmlApplicationViewer viewer;
-    //viewer.setOrientation(QmlApplicationViewer::ScreenOrientationLockLandscape);
     viewer.setOrientation(QmlApplicationViewer::ScreenOrientationAuto);
     viewer.setMainQmlFile(QLatin1String("qml/n9hextool/main.qml"));
     viewer.showExpanded();

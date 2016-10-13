@@ -51,6 +51,7 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
              this, SLOT(save_ini()));
     connect(qml, SIGNAL(on_radioButton_bitsize_clicked(int)),
              this, SLOT(on_radioButton_bitsize_clicked(int)));
+
     // Signals from ItemButtons
     connect(qml, SIGNAL(on_pushButton_neg_clicked()),
              this, SLOT(on_pushButton_neg_clicked()));
@@ -74,15 +75,19 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
             this, SLOT(on_pushButton_increase_clicked()));
     connect(qml, SIGNAL(on_pushButton_decrease_clicked()),
             this, SLOT(on_pushButton_decrease_clicked()));
+
     // Signals from ItemRegisters
     connect(qml, SIGNAL(on_radiobutton_register_clicked(int)),
              this, SLOT(on_radiobutton_register_clicked(int)));
+
     // Signals from ItemOperations
     connect(qml, SIGNAL(on_pushButton_regop_pressed(int,QString)),
              this, SLOT(on_pushButton_regop_pressed(int,QString)));
+
     // Signals from OptionsPage
     connect(qml, SIGNAL(optDialog(bool,bool)),
             this, SLOT(optDialog(bool,bool)));
+
     // Signals from ItemIPAddress
     connect(qml, SIGNAL(on_lineEdit_ipaddress_textChanged(int,QString)),
             this, SLOT(on_lineEdit_ipaddress_textChanged(int,QString)));
@@ -99,6 +104,7 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
     // Signals from HeaderItemEntry
     connect(qml, SIGNAL(on_lineEdit_textChanged(int,int,QString)),
             this, SLOT(on_lineEdit_textChanged(int,int,QString)));
+
     // Signals from MainPage
     connect(qml, SIGNAL(btnHeaderClicked(int)),
             this, SLOT(btnHeaderClicked(int)));
@@ -118,7 +124,6 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
              qml, SLOT(setHeaderEntry(int, QString)));
     connect(this, SIGNAL(setHeaderEntryEnabled(int,bool)),
              qml, SLOT(setHeaderEntryEnabled(int,bool)));
-
     connect(this, SIGNAL(setOpts(bool,bool,bool)),
              qml, SLOT(setOpts(bool,bool,bool)));
     connect(this, SIGNAL(setSigned(bool)),
@@ -192,7 +197,6 @@ void HexTool::closeEvent()
     }
 
 }
-
 
 void HexTool::on_lineEdit_textChanged(int mode, int index, QString text)
 {
@@ -1111,9 +1115,6 @@ void HexTool::save_ini()
     settings.setValue("optsignext", optsignext);
     settings.setValue("optzerobased", optzerobased);
     settings.endGroup();
-
-
-
 }
 /****************************************************************************
 

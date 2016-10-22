@@ -115,35 +115,35 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
 
     // Connect C++ signals to QML signals
     connect(this, SIGNAL(setReg(int)),
-             qml, SLOT(setReg(int)));
+             qml, SIGNAL(setReg(int)));
     connect(this, SIGNAL(setText(int, QString)),
-             qml, SLOT(setText(int, QString)));
+             qml, SIGNAL(setText(int, QString)));
     connect(this, SIGNAL(setIPAddress(int, QString)),
-             qml, SLOT(setIPAddress(int, QString)));
+             qml, SIGNAL(setIPAddress(int, QString)));
     connect(this, SIGNAL(setHeaderEntry(int, QString)),
-             qml, SLOT(setHeaderEntry(int, QString)));
+             qml, SIGNAL(setHeaderEntry(int, QString)));
     connect(this, SIGNAL(setHeaderEntryEnabled(int,bool)),
-             qml, SLOT(setHeaderEntryEnabled(int,bool)));
+             qml, SIGNAL(setHeaderEntryEnabled(int,bool)));
     connect(this, SIGNAL(setOpts(bool,bool,bool)),
-             qml, SLOT(setOpts(bool,bool,bool)));
+             qml, SIGNAL(setOpts(bool,bool,bool)));
     connect(this, SIGNAL(setSigned(bool)),
-             qml, SLOT(setSigned(bool)));
+             qml, SIGNAL(setSigned(bool)));
     connect(this, SIGNAL(setChar(int, QString)),
-             qml, SLOT(setChar(int, QString)));
+             qml, SIGNAL(setChar(int, QString)));
     connect(this, SIGNAL(setCharEnabled(int,bool)),
-             qml, SLOT(setCharEnabled(int,bool)));
+             qml, SIGNAL(setCharEnabled(int,bool)));
     connect(this, SIGNAL(setBit(int, QString)),
-             qml, SLOT(setBit(int, QString)));
+             qml, SIGNAL(setBit(int, QString)));
     connect(this, SIGNAL(setBitGroup16Enabled(bool)),
-             qml, SLOT(setBitGroup16Enabled(bool)));
+             qml, SIGNAL(setBitGroup16Enabled(bool)));
     connect(this, SIGNAL(setBitGroup32Enabled(bool)),
-             qml, SLOT(setBitGroup32Enabled(bool)));
+             qml, SIGNAL(setBitGroup32Enabled(bool)));
     connect(this, SIGNAL(setHeaderEntryFocus(int)),
-             qml, SLOT(setHeaderEntryFocus(int)));
+             qml, SIGNAL(setHeaderEntryFocus(int)));
     connect(this, SIGNAL(setCharsFocus(int)),
-             qml, SLOT(setCharsFocus(int)));
+             qml, SIGNAL(setCharsFocus(int)));
     connect(this, SIGNAL(setBitSize(int)),
-             qml, SLOT(setBitSize(int)));
+             qml, SIGNAL(setBitSize(int)));
 
     // Setup the user interface to an initial state
     SetUiState();
@@ -1300,13 +1300,13 @@ void HexTool::on_radiobutton_register_clicked(int index)
 {
     switch(index)
     {
-    case 0:
+    case REG_A:
         on_radioButton_registerA_clicked();
         break;
-    case 1:
+    case REG_B:
         on_radioButton_registerB_clicked();
         break;
-    case 2:
+    case REG_C:
         on_radioButton_registerC_clicked();
         break;
     }

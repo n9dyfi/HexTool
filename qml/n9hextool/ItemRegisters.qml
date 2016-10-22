@@ -2,18 +2,16 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 
 Item {
-    id: itemRegisters
 
     width: 0.3*(appDefaults.cDISPLAY_WIDTH-2*appDefaults.cDEFAULT_MARGIN)
     height: appDefaults.cDISPLAY_HEIGHT/6
 
-    property int nRegs : 3
+    property variant regNames : ["A","B","C"]
     property int spacingReg: 4
-    property int widthReg: width/nRegs-spacingReg
+    property int widthReg: width/regNames.length-spacingReg
     property int heightReg: 40
     property int heightLbl: 40
     property int yReg: 30
-    property int selectedRegIndex: -1
 
     signal setChecked(int checkedIndex)
 
@@ -25,7 +23,7 @@ Item {
 
     Repeater {
         id: registers
-        model: ["A","B","C"]
+        model: regNames
         Button {
             x: index*(widthReg+spacingReg)
             y: yReg

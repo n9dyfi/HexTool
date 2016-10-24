@@ -81,8 +81,8 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
              this, SLOT(on_radiobutton_register_clicked(int)));
 
     // Signals from ItemOperations
-    connect(qml, SIGNAL(on_pushButton_regop_pressed(int,QString)),
-             this, SLOT(on_pushButton_regop_pressed(int,QString)));
+    connect(qml, SIGNAL(on_pushButton_regop_pressed(int)),
+             this, SLOT(on_pushButton_regop_pressed(int)));
 
     // Signals from OptionsPage
     connect(qml, SIGNAL(optDialog(bool,bool)),
@@ -852,7 +852,7 @@ int HexTool::HandleOperation
     on_pushButton_regop_pressed Register operation button pressed
 
 ****************************************************************************/
-void HexTool::on_pushButton_regop_pressed(int index, QString text)
+void HexTool::on_pushButton_regop_pressed(int index)
 {
     enum BtnName {BTN_AND=0,BTN_OR,BTN_XOR,BTN_PLUS,BTN_MINUS,BTN_MULT,
                  BTN_DIV,BTN_LSHIFT,BTN_RSHIFT,BTN_FLIP};

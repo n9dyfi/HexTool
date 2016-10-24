@@ -61,7 +61,7 @@ private slots:
 
     void closeEvent();
     void btnHeaderClicked(int);
-    void on_pushButton_regop_pressed(int index, QString text);
+    void on_pushButton_regop_pressed(int index);
     void on_radiobutton_register_clicked(int);
     void on_pushButton_endianSwap_pressed();
     void on_pushButton_bitNumbering_pressed(bool);

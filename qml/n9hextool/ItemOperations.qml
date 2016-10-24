@@ -17,7 +17,7 @@ Item {
             text: modelData
             width: widthBtn
             height: appDefaults.cBUTTON_HEIGHT
-            onClicked: on_pushButton_regop_pressed(index,text)
+            onClicked: on_pushButton_regop_pressed(index)
         }
     }
 

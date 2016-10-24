@@ -86,7 +86,7 @@ PageStackWindow {
     signal on_radiobutton_register_clicked(int index)
 
     // Signals for ItemOperations
-    signal on_pushButton_regop_pressed(int index, string text)
+    signal on_pushButton_regop_pressed(int index)
 
     // Signals for OptionsPage
     signal optDialog(bool saveload, bool signext)

@@ -11,10 +11,10 @@ Item {
     property int widthBtn: (width-(nButtons-1)*spacingBtn)/nButtons
 
     Repeater {
-        model: nButtons
+        model: ops
         Button {
             x: index*(widthBtn+spacingBtn)
-            text: ops[index]
+            text: modelData
             width: widthBtn
             height: appDefaults.cBUTTON_HEIGHT
             onClicked: on_pushButton_regop_pressed(index,text)

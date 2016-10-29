@@ -88,22 +88,9 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
     connect(qml, SIGNAL(optDialog(bool,bool)),
             this, SLOT(optDialog(bool,bool)));
 
-    // Signals from ItemIPAddress
-    connect(qml, SIGNAL(on_lineEdit_ipaddress_textChanged(int,QString)),
-            this, SLOT(on_lineEdit_ipaddress_textChanged(int,QString)));
-    connect(qml, SIGNAL(on_lineEdit_ascii_textChanged(int,QString)),
-            this, SLOT(on_lineEdit_ascii_textChanged(int,QString)));
+    // Signals from ItemFields (IP Address & Unicode)
     connect(qml, SIGNAL(showHeaderEntry(int)),
             this, SLOT(showHeaderEntry(int)));
-    connect(this, SIGNAL(showHeaderEntryForIPAddress()),
-            qml, SLOT(showHeaderEntryForIPAddress()));
-    // Signals from ItemChars
-    connect(this, SIGNAL(showHeaderEntryForChars()),
-            qml, SLOT(showHeaderEntryForChars()));
-
-    // Signals from HeaderItemEntry
-    connect(qml, SIGNAL(on_lineEdit_textChanged(int,int,QString)),
-            this, SLOT(on_lineEdit_textChanged(int,int,QString)));
 
     // Signals from MainPage
     connect(qml, SIGNAL(btnHeaderClicked(int)),
@@ -118,32 +105,38 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
              qml, SIGNAL(setReg(int)));
     connect(this, SIGNAL(setText(int, QString)),
              qml, SIGNAL(setText(int, QString)));
-    connect(this, SIGNAL(setIPAddress(int, QString)),
-             qml, SIGNAL(setIPAddress(int, QString)));
-    connect(this, SIGNAL(setHeaderEntry(int, QString)),
-             qml, SIGNAL(setHeaderEntry(int, QString)));
-    connect(this, SIGNAL(setHeaderEntryEnabled(int,bool)),
-             qml, SIGNAL(setHeaderEntryEnabled(int,bool)));
+    connect(this, SIGNAL(setField(int, int, QString)),
+             qml, SIGNAL(setField(int, int, QString)));
     connect(this, SIGNAL(setOpts(bool,bool,bool)),
              qml, SIGNAL(setOpts(bool,bool,bool)));
     connect(this, SIGNAL(setSigned(bool)),
              qml, SIGNAL(setSigned(bool)));
-    connect(this, SIGNAL(setChar(int, QString)),
-             qml, SIGNAL(setChar(int, QString)));
-    connect(this, SIGNAL(setCharEnabled(int,bool)),
-             qml, SIGNAL(setCharEnabled(int,bool)));
+
+    // Signals to ItemBinary
     connect(this, SIGNAL(setBit(int, QString)),
              qml, SIGNAL(setBit(int, QString)));
     connect(this, SIGNAL(setBitGroup16Enabled(bool)),
              qml, SIGNAL(setBitGroup16Enabled(bool)));
     connect(this, SIGNAL(setBitGroup32Enabled(bool)),
              qml, SIGNAL(setBitGroup32Enabled(bool)));
-    connect(this, SIGNAL(setHeaderEntryFocus(int)),
-             qml, SIGNAL(setHeaderEntryFocus(int)));
-    connect(this, SIGNAL(setCharsFocus(int)),
-             qml, SIGNAL(setCharsFocus(int)));
+
+    // Signals to ItemButtons
     connect(this, SIGNAL(setBitSize(int)),
              qml, SIGNAL(setBitSize(int)));
+
+    // Signals from HeaderItemEntry
+    connect(qml, SIGNAL(on_lineEdit_textChanged(int,int,QString)),
+            this, SLOT(on_lineEdit_textChanged(int,int,QString)));
+
+    // Signals to ItemHeaderEntry
+    connect(this, SIGNAL(setHeaderEntry(int, QString)),
+             qml, SIGNAL(setHeaderEntry(int, QString)));
+    connect(this, SIGNAL(setHeaderEntryVisible(int)),
+            qml, SLOT(setHeaderEntryVisible(int)));
+    connect(this, SIGNAL(setHeaderEntryEnabled(int,bool)),
+             qml, SIGNAL(setHeaderEntryEnabled(int,bool)));
+    connect(this, SIGNAL(setHeaderEntryFocus(int)),
+             qml, SIGNAL(setHeaderEntryFocus(int)));
 
     // Setup the user interface to an initial state
     SetUiState();
@@ -281,22 +274,14 @@ void HexTool::showHeaderEntry(int mode)
         return;
     }
 
-    // Update visibility state: 0 -> 1 (IP address) or 2 (characters)
+    // Update visibility state: 0 -> 1 (IP address) or 2 (Unicode)
     headerEntryVisible = mode;
 
     // Initialize the contents for the entry fields
     UpdateDisplay();
 
     // Make the entry fields visible
-    switch(mode)
-    {
-    case IPADR:
-        emit(showHeaderEntryForIPAddress());
-        break;
-    case CHARS:
-        emit(showHeaderEntryForChars());
-        break;
-    }
+    emit(setHeaderEntryVisible(mode));
 }
 /****************************************************************************
 
@@ -353,37 +338,37 @@ void HexTool::UpdateDisplay()
     // Update IP address
 
     sprintf(str, "%d", (quint8)((value & 0x000000FF) >> 0));
-    emit(setIPAddress(3,str));
+    emit(setField(1,3,str));
     if(headerEntryVisible==1) emit(setHeaderEntry(3,str));
 
     sprintf(str, "%d", (quint8)((value & 0x0000FF00) >> 8));
-    emit(setIPAddress(2,str));
+    emit(setField(1,2,str));
     if(headerEntryVisible==1) emit(setHeaderEntry(2,str));
 
     sprintf(str, "%d", (quint8)((value & 0x00FF0000) >> 16));
-    emit(setIPAddress(1,str));
+    emit(setField(1,1,str));
     if(headerEntryVisible==1) emit(setHeaderEntry(1,str));
 
     sprintf(str, "%d", (quint8)((value & 0xFF000000) >> 24));
-    emit(setIPAddress(0,str));
+    emit(setField(1,0,str));
     if(headerEntryVisible==1) emit(setHeaderEntry(0,str));
 
     // Update characters
 
     sprintf(str, "%c", (quint8)((value & 0x000000FF) >> 0));
-    emit(setChar(3,str));
+    emit(setField(2,3,str));
     if(headerEntryVisible==2) emit(setHeaderEntry(3,str));
 
     sprintf(str, "%c", (quint8)((value & 0x0000FF00) >> 8));
-    emit(setChar(2,str));
+    emit(setField(2,2,str));
     if(headerEntryVisible==2) emit(setHeaderEntry(2,str));
 
     sprintf(str, "%c", (quint8)((value & 0x00FF0000) >> 16));
-    emit(setChar(1,str));
+    emit(setField(2,1,str));
     if(headerEntryVisible==2) emit(setHeaderEntry(1,str));
 
     sprintf(str, "%c", (quint8)((value & 0xFF000000) >> 24));
-    emit(setChar(0,str));
+    emit(setField(2,0,str));
     if(headerEntryVisible==2) emit(setHeaderEntry(0,str));
 
     ////////////////////////////////////////////////////////////////////////
@@ -400,7 +385,6 @@ void HexTool::UpdateDisplay()
     {
 
         emit(setBitGroup16Enabled(true));
-        emit(setCharEnabled(2,true));
         emit(setHeaderEntryEnabled(2,true));
 
         for (int bit=8; bit<16; bit++)
@@ -414,8 +398,6 @@ void HexTool::UpdateDisplay()
         {
 
             emit(setBitGroup32Enabled(true));
-            emit(setCharEnabled(0,true));
-            emit(setCharEnabled(1,true));
             emit(setHeaderEntryEnabled(0,true));
             emit(setHeaderEntryEnabled(1,true));
 
@@ -434,8 +416,6 @@ void HexTool::UpdateDisplay()
                 emit(setBit(i+15,""));
             }
             emit(setBitGroup32Enabled(false));
-            emit(setCharEnabled(0,false));
-            emit(setCharEnabled(1,false));
             emit(setHeaderEntryEnabled(0,false));
             //ui->lineEdit_ipaddress2->setDisabled(true);
             emit(setHeaderEntryEnabled(1,false));
@@ -450,9 +430,6 @@ void HexTool::UpdateDisplay()
         }
         emit(setBitGroup16Enabled(false));
         emit(setBitGroup32Enabled(false));
-        emit(setCharEnabled(0,false));
-        emit(setCharEnabled(1,false));
-        emit(setCharEnabled(2,false));
         emit(setHeaderEntryEnabled(0,false));
         emit(setHeaderEntryEnabled(1,false));
         emit(setHeaderEntryEnabled(2,false));

@@ -101,21 +101,23 @@ private slots:
 signals:
     void setReg(int);
     void setText(int, QString);
-    void setIPAddress(int, QString);
-    void setHeaderEntry(int, QString);
+    void setField(int, int, QString);
     void setSigned(bool);
     void setOpts(bool,bool,bool);
-    void setChar(int, QString);
-    void setCharEnabled(int,bool);
+    void btnHelpClicked();
+    void btnCloseClicked();
+
+    // Signals for ItemBinary
     void setBit(int, QString);
     void setBitGroup16Enabled(bool);
     void setBitGroup32Enabled(bool);
-    void setCharsFocus(int);
+
+    // Signals for ItemButtons
     void setBitSize(int);
-    void btnHelpClicked();
-    void btnCloseClicked();
-    void showHeaderEntryForIPAddress();
-    void showHeaderEntryForChars();
+
+    // Signals for ItemHeaderEntry
+    void setHeaderEntry(int, QString);
+    void setHeaderEntryVisible(int);
     void setHeaderEntryEnabled(int,bool);
     void setHeaderEntryFocus(int);
 

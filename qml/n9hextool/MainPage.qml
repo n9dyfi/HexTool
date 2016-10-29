@@ -32,14 +32,22 @@ Page {
         anchors.top: itemBinary.bottom
     }
 
-    ItemIPAddress {
+    ItemFields {
         id: itemIPAddress
+        itemWidth: 0.4
+        fieldLabel: "IP Address"
+        fieldColor: "#9a7d54"
+        fieldType: 1
         anchors.left: itemRegisters.right
         anchors.top: itemBinary.bottom
     }
 
-    ItemChars {
-        id: itemChars
+    ItemFields {
+        id: itemUnicode
+        itemWidth: 0.3
+        fieldLabel: "Unicode"
+        fieldColor: "#385838"
+        fieldType: 2
         anchors.left: itemIPAddress.right
         anchors.top: itemBinary.bottom
     }

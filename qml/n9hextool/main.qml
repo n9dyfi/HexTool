@@ -46,25 +46,16 @@ PageStackWindow {
     signal on_pushButton_increase_clicked()
     signal on_pushButton_decrease_clicked()
 
-    // Signals for ItemIPAddress
-    signal setIPAddress(int index, string value)
-    signal setIPAddressFocus(int index)
-    signal on_lineEdit_ipaddress_textChanged(int index, string text)
+    // Signals for ItemFields
+    signal setField(int type, int index, string value)
     signal showHeaderEntry(int mode)
-
-    // Signals for ItemChars
-    signal setChar(int index, string value)
-    signal setCharEnabled(int index, bool isEnabled)
-    signal setCharsFocus(int index)
-    signal on_lineEdit_ascii_textChanged(int index, string text)
 
     // Signals for ItemHeaderEntry
     signal on_lineEdit_textChanged(int mode, int index, string text)
     signal setHeaderEntry(int index, string value)
+    signal setHeaderEntryVisible(int mode)
     signal setHeaderEntryFocus(int index)
     signal setHeaderEntryEnabled(int index, bool isEnabled)
-    signal showHeaderEntryForIPAddress()
-    signal showHeaderEntryForChars()
 
     // Signals for ItemBinary
     signal setBit(int index, string value)
@@ -74,12 +65,12 @@ PageStackWindow {
     signal on_pushButton_bitNumbering_pressed(bool zeroBased)
 
     // Signals for ItemButtons
-    signal on_radioButton_bitsize_clicked(int index)
     signal setBitSize(int index)
+    signal setSigned(bool isChecked)
+    signal on_radioButton_bitsize_clicked(int index)
     signal on_checkBox_signed_toggled(bool isChecked)
     signal on_pushButton_not_pressed()
     signal on_pushButton_clr_clicked()
-    signal setSigned(bool isChecked)
 
     // Signals for ItemRegisters
     signal setReg(int index)

@@ -2,7 +2,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 
 Item {
-    id: itemHeaderEntry
+
     width: 0.4*(appDefaults.cDISPLAY_WIDTH-2*appDefaults.cDEFAULT_MARGIN)
     height: heightField
 
@@ -43,13 +43,15 @@ Item {
         label: "ItemHeaderEntry"
     }
 
-    // setHeaderEntry(int index, string value)
+    // signal handler for setHeaderEntry(int index, string value)
     Connections {
         target: appWindow
         onSetHeaderEntry: {
             fields.itemAt(index).text = value
         }
     }
+
+    // signal handler for setHeaderEntryFocus(int index)
     Connections {
         target: appWindow
         onSetHeaderEntryFocus: {
@@ -58,25 +60,14 @@ Item {
         }
     }
 
-    // ItemIPAddress mouse area was clicked
+    // signal handler for setHeaderEntryVisible(int mode)
     Connections {
         target: appWindow
-        onShowHeaderEntryForIPAddress: {
-            itemHeaderEntry.modeMaxLength = 3
+        onSetHeaderEntryVisible: {
+            itemHeaderEntry.modeMaxLength = (mode===1)?3:1
             itemHeaderEntry.visible = true
-            itemHeaderEntry.mode = 1
-            btnHelp.mode = 1
-        }
-    }
-
-    // ItemChars mouse area was clicked
-    Connections {
-        target: appWindow
-        onShowHeaderEntryForChars: {
-            itemHeaderEntry.modeMaxLength = 1
-            itemHeaderEntry.visible = true
-            itemHeaderEntry.mode = 2
-            btnHelp.mode = 2
+            itemHeaderEntry.mode = mode
+            btnHelp.mode = mode
         }
     }
 
@@ -84,7 +75,8 @@ Item {
     Connections {
         target: appWindow
         onBtnCloseClicked: {
-            // reset maxLength to 3, otherwise we cannot change content from chars to IP address
+            // reset maxLength to 3, otherwise we cannot change
+            // content from chars to IP address
             itemHeaderEntry.modeMaxLength = 3
             itemHeaderEntry.visible = false
             mode = 0
@@ -95,6 +87,7 @@ Item {
 
     Connections {
         target: appWindow
+        // signal handler for setHeaderEntryEnabled(int index, bool isEnabled)
         onSetHeaderEntryEnabled: {
             fields.itemAt(index).enabled = isEnabled
             fields.itemAt(index).visible = isEnabled

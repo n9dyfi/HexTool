@@ -6,6 +6,8 @@ Page {
     ItemHeader {
         id: itemHeader
         headerText: "HexTool"
+        buttonVisible: true
+        menuVisible: true
     }
 
     ItemNumberEntry {

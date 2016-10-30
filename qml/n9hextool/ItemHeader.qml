@@ -4,6 +4,8 @@ import com.nokia.meego 1.0
 Item {
 
     property alias headerText: titleLabel.text
+    property alias buttonVisible: btnHelp.visible
+    property alias menuVisible: menuIcon.visible
 
     // Header dimensions
     height: appDefaults.cHEADER_HEIGHT

@@ -3,6 +3,7 @@ import com.nokia.meego 1.0
 
 Page {
     id: optionsPage
+    orientationLock: PageOrientation.LockLandscape
 
     // Options that can be set
     property bool saveload
@@ -16,6 +17,8 @@ Page {
     ItemHeader {
         id: header
         headerText: "HexTool Options"
+        buttonVisible: false
+        menuVisible: false
     }
 
     Column {

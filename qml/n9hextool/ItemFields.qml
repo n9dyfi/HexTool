@@ -48,10 +48,6 @@ Item {
         }
     }
 
-    Annotation {
-        label: "ItemFields"
-    }
-
     // signal handler for setField(int type, int index, string value)
     Connections {
         target: appWindow

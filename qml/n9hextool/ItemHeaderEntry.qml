@@ -39,10 +39,6 @@ Item {
         }
     }
 
-    Annotation {
-        label: "ItemHeaderEntry"
-    }
-
     // signal handler for setHeaderEntry(int index, string value)
     Connections {
         target: appWindow
@@ -71,7 +67,7 @@ Item {
         }
     }
 
-    // Close button in ItemHeaderEntry was clicked - end entry
+    // Close button in ItemHeader was clicked - end entry
     Connections {
         target: appWindow
         onBtnCloseClicked: {
@@ -85,9 +81,9 @@ Item {
         }
     }
 
+    // signal handler for setHeaderEntryEnabled(int index, bool isEnabled)
     Connections {
         target: appWindow
-        // signal handler for setHeaderEntryEnabled(int index, bool isEnabled)
         onSetHeaderEntryEnabled: {
             fields.itemAt(index).enabled = isEnabled
             fields.itemAt(index).visible = isEnabled

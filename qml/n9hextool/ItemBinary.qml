@@ -61,10 +61,6 @@ Item {
         }
     }
 
-    Annotation {
-        label: "ItemBinary"
-    }
-
     Connections {
         target: appWindow
         onSetBit: bitFields.itemAt(31-index).text = value

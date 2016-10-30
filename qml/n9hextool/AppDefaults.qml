@@ -44,8 +44,6 @@ Item {
     property int cDISPLAY_HEIGHT : (cSIMU_MODE)?screen.displayWidth:screen.displayHeight
     property int cDPI : screen.dpi
 
-    property bool cSHOW_ANNOTATIONS : false
-
     Component.onCompleted: {
         theme.inverted = true
         theme.colorScheme = cCOLOR_SCHEME

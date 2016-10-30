@@ -2,13 +2,13 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 
 Item {
-    id: itemButtons
+
     width: 0.35*(appDefaults.cDISPLAY_WIDTH-2*appDefaults.cDEFAULT_MARGIN)
     height: 0.22*appDefaults.cDISPLAY_HEIGHT
 
-    property int bW: 70
-    property int bH: 40
-    property int bSp: 4
+    property int widthBtn: 70
+    property int heightBtn: 40
+    property int spacingBtn: 4
 
     signal setChecked(int checkedIndex)
 
@@ -24,8 +24,8 @@ Item {
                 checkable: true
                 checked: false
                 text: modelData
-                width: bW
-                height: bH
+                width: widthBtn
+                height: heightBtn
                 onClicked: {
                     // inform all radio buttons
                     setChecked(index)
@@ -51,10 +51,10 @@ Item {
         id: lowerRow
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        spacing: 2*bSp
+        spacing: 2*spacingBtn
         Button{
-            text: qsTr("not")
-            width: bW; height: bH
+            text: "not"
+            width: widthBtn; height: heightBtn
             onClicked: on_pushButton_not_pressed()
         }
         CheckBox {
@@ -63,8 +63,8 @@ Item {
             onCheckedChanged: on_checkBox_signed_toggled(checked)
         }
         Button{
-            text: qsTr("clr")
-            width: bW; height: bH
+            text: "clr"
+            width: widthBtn; height: heightBtn
             onClicked: on_pushButton_clr_clicked()
         }
     }
@@ -74,7 +74,4 @@ Item {
         onSetSigned: signed.checked = isChecked
     }
 
-    Annotation {
-        label: "ItemButtons"
-    }
 }

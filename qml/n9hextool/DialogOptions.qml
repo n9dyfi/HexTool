@@ -19,9 +19,6 @@ Item {
                     text: "sign extension"
                 }
             }
-            Annotation {
-                label: "Item"
-            }
         }
         acceptButtonText: qsTr("Ok")
         rejectButtonText: qsTr("Cancel")

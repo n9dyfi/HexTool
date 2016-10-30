@@ -51,8 +51,4 @@ Item {
         onSetReg: setChecked(index)
     }
 
-    Annotation {
-        label: "ItemRegisters"
-    }
-
 }

@@ -20,9 +20,4 @@ Item {
             onClicked: on_pushButton_regop_pressed(index)
         }
     }
-
-    Annotation {
-        label: "ItemOperations"
-    }
-
 }

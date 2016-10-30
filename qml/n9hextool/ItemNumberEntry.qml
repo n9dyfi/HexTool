@@ -80,10 +80,6 @@ Item {
         }
     }
 
-    Annotation {
-        label: "ItemNumberEntry"
-    }
-
     Connections {
         target: appWindow
         onSetText: entryFields.itemAt(index).text = value

@@ -159,7 +159,6 @@ HexTool::HexTool(QObject *qml, QObject *parent) :
     emit(setOpts(optsl,optsignext,optzerobased));
 }
 
-
 /****************************************************************************
 
     Qt Event Handler
@@ -1201,21 +1200,7 @@ void HexTool::SetUiState()
     }
 
     reg_id = GetRegister();
-
-    switch (reg_id)
-    {
-    case 0:
-       emit(setReg(REG_A));
-       break;
-    case 1:
-       emit(setReg(REG_B));
-       break;
-    case 2:
-       emit(setReg(REG_C));
-       break;
-    default:
-       qDebug() << "switch:" << QString::number(reg_id);
-    }
+    emit(setReg(reg_id));
 
 }
 

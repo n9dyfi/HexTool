@@ -1,6 +1,7 @@
 The Debian Package n9hextool
 ----------------------------
 
-Comments regarding the Package
+n9hextool is a simple calculator and radix converter for hexadecimal,
+decimal, octal and binary numbers.
 
- -- unknown <>  Mon, 19 Sep 2016 22:09:18 +0300
+ -- n9dyfi <n9dyfi@gmail.com>  Mon, 19 Sep 2016 22:09:18 +0300

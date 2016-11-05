@@ -1,3 +1,9 @@
+n9hextool (1.0.1) unstable; urgency=low
+
+  * Lock options page to landscape.
+
+ -- n9dyfi <n9dyfi@gmail.com>  Sat, 05 Nov 2016 11:39:38 +0200
+
 n9hextool (1.0.0) unstable; urgency=low
 
   * Initial Release.

@@ -2,8 +2,7 @@ import QtQuick 1.1
 
 Item {
 
-
-    property string cVERSION : "1.0.0"
+    property string cVERSION : "1.0.1"
     property string cHOMEPAGE : "http://talk.maemo.org/showthread.php?t=93299"
     property int cCOLOR_SCHEME : 6
     property int cDEFAULT_MARGIN : 12

@@ -2,6 +2,7 @@ import QtQuick 1.1
 import com.nokia.meego 1.0
 
 Item {
+
     width: appDefaults.cDISPLAY_WIDTH-2*appDefaults.cDEFAULT_MARGIN
     height: appDefaults.cDISPLAY_HEIGHT/10
 
